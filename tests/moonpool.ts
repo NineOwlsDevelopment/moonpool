@@ -111,7 +111,7 @@ describe("moonpool", () => {
       symbol,
       DROPLET_MINT.toBase58()
     );
-    const raiseGoal = 300 * LAMPORTS_PER_SOL;
+    const raiseGoal = 0.5 * LAMPORTS_PER_SOL;
 
     const createPoolInstruction: TransactionInstruction = await program.methods
       .createPool(POOL_NAME, symbol, new BN(raiseGoal))
@@ -204,8 +204,8 @@ describe("moonpool", () => {
       false
     );
 
-    const sol_amount_to_contribute = 0.12;
-    const droplets_per_sol = 1_000_000_000 / 300; // 300 is the raise goal
+    const sol_amount_to_contribute = 0.5;
+    const droplets_per_sol = 1_000_000_000 / 0.5; // 300 is the raise goal
     const droplets_to_mint = sol_amount_to_contribute * droplets_per_sol;
     console.log(Math.floor(droplets_to_mint * Math.pow(10, 6)));
 

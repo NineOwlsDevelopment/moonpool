@@ -90,11 +90,11 @@ impl<'info> Contribute<'info> {
         self.pool.validate(amount_to_mint)?;
 
         // Transfer the program fee in SOL from the payer to the fee vault
-        let program_fee = amount * PROGRAM_FEE.checked_div(100).unwrap();
+        let program_fee = amount as f64 * (PROGRAM_FEE as f64 / 100.0);
         let fee_vault_ix = solana_program::system_instruction::transfer(
             &self.payer.key(),
             &self.fee_vault.key(),
-            program_fee,
+            program_fee as u64,
         );
         solana_program::program::invoke(
             &fee_vault_ix,
